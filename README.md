@@ -11,6 +11,8 @@ Demo版本游戏界面为网格，其实也可以去掉，但是加上去更好�
 
 更多新奇玩法期待本人更新。
 
+
+
 2nd version update
 
 what's new:
