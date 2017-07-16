@@ -879,17 +879,13 @@ public class SnakeDemo extends JComponent{
 			    		ifcount = false;
 			    		countsecond = 5;
 			    		Time2.setText("5");
-//			    		point_list[0] = 20;
-//			    	    point_list[1] = 40;
-//			    	    point_list[2] = 30;
-//			    	    point_list[3] = 10;
-//			    	    point_list[4] = 30;
-//			    	    point_list[5] = 50;
+					
+					remove(food_label);
 			    		if(foodtag == 1 || foodtag == 5)//分值最高的两种食物在规定时间内没被吃掉就消失
 			    		{
 			    			ProduceFood();
 			    		}
-			    		remove(food_label);
+			    		
 			    		ProduceRandom();
 			    		add(food_label);
 			    		ifcount = true;
