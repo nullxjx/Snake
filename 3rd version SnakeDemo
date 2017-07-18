@@ -80,6 +80,8 @@ public class SnakeDemo extends JComponent{
 	
 	public static boolean If_remove = false;//是否移除网格线
 	
+	private boolean hit_flag = false;
+	
 	public SnakeDemo(){
 		
 		String lookAndFeel =UIManager.getSystemLookAndFeelClassName();
@@ -145,7 +147,7 @@ public class SnakeDemo extends JComponent{
         head_label.setOpaque(false);
         
         //初始化身体所有节点
-        snakebody = new ImageIcon("body//body4.png");
+        snakebody = new ImageIcon("body//body.png");
 		snakebody.setImage(snakebody.getImage().getScaledInstance(20,20,Image.SCALE_SMOOTH));//保持图片的清晰
 		for(int i = 0; i < MAX_SIZE;i++)
 		{
@@ -213,10 +215,11 @@ public class SnakeDemo extends JComponent{
 	    		}
 	    		if(e.getKeyCode() == KeyEvent.VK_ESCAPE)//重置所有变量初始值
 	    		{
-	    			remove(food_label);//去掉被吃掉的食物
+	    			hit_flag = false;
+	    		    remove(food_label);//去掉被吃掉的食物
 					score = 0;
 					Score.setText("0");
-	    			//初始化头部坐标
+					//初始化头部坐标
 	    		    ProduceRandom();
 	    		    head = new Tile(randomx,randomy);
 	    		    //初始化身体节点部坐标
@@ -225,6 +228,11 @@ public class SnakeDemo extends JComponent{
 	    				body[i].x = 0;
 	    				body[i].y = 0;
 	    			}
+	    		    
+	    		    for(int k = 0;k < body_length;k++)
+	    		    {
+	    		    	remove(body_label[k]);
+	    		    }
 	    		    
 	    			hour =0;
 	    			min =0;
@@ -340,6 +348,12 @@ public class SnakeDemo extends JComponent{
 		g.setRenderingHint(RenderingHints.KEY_STROKE_CONTROL,RenderingHints.VALUE_STROKE_NORMALIZE);
 		
 		//刷新头部坐标
+		if(hit_flag)
+		{
+			head.x = temp.x;
+			head.y = temp.y;
+		}
+		System.out.println("刷新头部");
 		head_label.setBounds(head.x, head.y, 20, 20);
 		
 		if(!first_launch)
@@ -482,11 +496,13 @@ public class SnakeDemo extends JComponent{
 		{
 			if(head.x < 7)
 			{
+				ifcount = false;
 				new AePlayWave("over.wav").start();
 				isrun = false;
 				int result=JOptionPane.showConfirmDialog(null, "Game over! Try again?", "Information", JOptionPane.YES_NO_OPTION);
 				if(result==JOptionPane.YES_NO_OPTION)
 				{
+					hit_flag = false;
 					remove(food_label);//去掉被吃掉的食物
 					score = 0;
 					Score.setText("0");
@@ -522,7 +538,7 @@ public class SnakeDemo extends JComponent{
 	    			run = new Thread();
 	    			run.start();
 	    			
-	    			ifcount = false;
+	    			
 		    		countsecond = 5;
 		    		Time2.setText("5");
 		    		ifcount = true;
@@ -532,6 +548,7 @@ public class SnakeDemo extends JComponent{
 				else
 				{
 					run.stop();
+					pause = true;
 				}		
 			}
 		}
@@ -539,11 +556,13 @@ public class SnakeDemo extends JComponent{
 		{
 			if(head.x > 885)
 			{
+				ifcount = false;
 				new AePlayWave("over.wav").start();
 				isrun = false;
 				int result=JOptionPane.showConfirmDialog(null, "Game over! Try again?", "Information", JOptionPane.YES_NO_OPTION);
 				if(result==JOptionPane.YES_NO_OPTION)
 				{
+					hit_flag = false;
 					remove(food_label);//去掉被吃掉的食物
 					score = 0;
 					Score.setText("0");
@@ -579,7 +598,7 @@ public class SnakeDemo extends JComponent{
 	    			run = new Thread();
 	    			run.start();
 	    			
-	    			ifcount = false;
+	    			
 		    		countsecond = 5;
 		    		Time2.setText("5");
 		    		ifcount = true;
@@ -589,6 +608,7 @@ public class SnakeDemo extends JComponent{
 				else
 				{
 					run.stop();
+					pause = true;
 				}
 			}
 		}
@@ -596,14 +616,16 @@ public class SnakeDemo extends JComponent{
 		{
 			if(head.y < 12)
 			{
-				remove(food_label);//去掉被吃掉的食物
-				score = 0;
-				Score.setText("0");
+				ifcount = false;
 				new AePlayWave("over.wav").start();
 				isrun = false;
 				int result=JOptionPane.showConfirmDialog(null, "Game over! Try again?", "Information", JOptionPane.YES_NO_OPTION);
 				if(result==JOptionPane.YES_NO_OPTION)
 				{
+					hit_flag = false;
+					remove(food_label);//去掉被吃掉的食物
+					score = 0;
+					Score.setText("0");
 					//初始化头部坐标
 	    		    ProduceRandom();
 	    		    head = new Tile(randomx,randomy);
@@ -636,7 +658,7 @@ public class SnakeDemo extends JComponent{
 	    			run = new Thread();
 	    			run.start();
 	    			
-	    			ifcount = false;
+	    			
 		    		countsecond = 5;
 		    		Time2.setText("5");
 		    		ifcount = true;
@@ -646,6 +668,7 @@ public class SnakeDemo extends JComponent{
 				else
 				{
 					run.stop();
+					pause = true;
 				}
 			}
 		}
@@ -653,14 +676,16 @@ public class SnakeDemo extends JComponent{
 		{
 			if(head.y > 472)
 			{
-				remove(food_label);//去掉被吃掉的食物
-				score = 0;
-				Score.setText("0");
+				ifcount = false;
 				new AePlayWave("over.wav").start();
 				isrun = false;
 				int result=JOptionPane.showConfirmDialog(null, "Game over! Try again?", "Information", JOptionPane.YES_NO_OPTION);
 				if(result==JOptionPane.YES_NO_OPTION)
 				{
+					hit_flag = false;
+					remove(food_label);//去掉被吃掉的食物
+					score = 0;
+					Score.setText("0");
 					//初始化头部坐标
 	    		    ProduceRandom();
 	    		    head = new Tile(randomx,randomy);
@@ -693,7 +718,7 @@ public class SnakeDemo extends JComponent{
 	    			run = new Thread();
 	    			run.start();
 	    			
-	    			ifcount = false;
+	    			
 		    		countsecond = 5;
 		    		Time2.setText("5");
 		    		ifcount = true;
@@ -703,6 +728,7 @@ public class SnakeDemo extends JComponent{
 				else
 				{
 					run.stop();
+					pause = true;
 				}
 			}
 		}
@@ -714,11 +740,13 @@ public class SnakeDemo extends JComponent{
 		{
 			if(body[i].x == head.x && body[i].y == head.y)
 			{
+				ifcount = false;
 				new AePlayWave("over.wav").start();
 				isrun = false;
 				int result=JOptionPane.showConfirmDialog(null, "Game over! Try again?", "Information", JOptionPane.YES_NO_OPTION);
 				if(result==JOptionPane.YES_NO_OPTION)
 				{
+					hit_flag = false;
 					remove(food_label);//去掉被吃掉的食物
 					score = 0;
 					Score.setText("0");
@@ -754,7 +782,7 @@ public class SnakeDemo extends JComponent{
 	    			run = new Thread();
 	    			run.start();
 	    			
-	    			ifcount = false;
+	    			
 		    		countsecond = 5;
 		    		Time2.setText("5");
 		    		ifcount = true;
@@ -764,6 +792,7 @@ public class SnakeDemo extends JComponent{
 				else
 				{
 					run.stop();
+					pause = true;
 				}
 				break;
 			}
@@ -796,53 +825,85 @@ public class SnakeDemo extends JComponent{
 					
 					if(!pause)
 					{	
+						hit_flag = false;
 						temp.x = head.x;
 						temp.y = head.y;
+						
 						//头部移动
 						if(direction == "L")
 						{
 							head.x -= 22;
+							if(head.x < 7)
+							{
+								hit_flag = true;
+							}
 						}
 						if(direction == "R")
 						{
 							head.x += 22;
+							if(head.x > 885)
+							{
+								hit_flag = true;
+							}
 						}
 						if(direction == "U")
 						{
 							head.y -= 22;
+							if(head.y < 12)
+							{
+								hit_flag = true;
+							}
 						}
 						if(direction == "D")
 						{
 							head.y += 22;
+							if(head.y > 472)
+							{
+								hit_flag = true;
+							}
 						}
 						current_direction = direction;//刷新当前前进方向
-						//身体移动
-						for(int i = 0;i < body_length;i++)
-						{
-							temp2.x = body[i].x;
-							temp2.y = body[i].y;
-							body[i].x = temp.x;
-							body[i].y = temp.y;
-							temp.x = temp2.x;
-							temp.y = temp2.y;
-						}
 						
-						if(EatFood())
+						if(!hit_flag)
 						{
-							body_length ++;
-							body[body_length-1].x = temp.x;
-							body[body_length-1].y = temp.y;
+							for(int i = 0;i < body_length;i++)
+							{
+								temp2.x = body[i].x;
+								temp2.y = body[i].y;
+								body[i].x = temp.x;
+								body[i].y = temp.y;
+								temp.x = temp2.x;
+								temp.y = temp2.y;
+							}
 							
-							add(body_label[body_length-1]);
-							
-							Length.setText("" + (body_length+1) );//刷新长度
-							score += point_list[foodtag];
-							Score.setText("" + score);//刷新得分
-							new AePlayWave("eat.wav").start();
+							if(EatFood())
+							{
+								body_length ++;
+								body[body_length-1].x = temp.x;
+								body[body_length-1].y = temp.y;
+								
+								add(body_label[body_length-1]);
+								
+								Length.setText("" + (body_length+1) );//刷新长度
+								score += point_list[foodtag];
+								Score.setText("" + score);//刷新得分
+								new AePlayWave("eat.wav").start();
+							}
 						}
-						
+//						else
+//						{
+//							temp2.x = head.x;//temp2记录head变化之后的坐标
+//							temp2.y = head.y;
+//							head.x = temp.x;//temp记录head变化之前的坐标
+//							head.y = temp.y;
+//							System.out.println("OK1");
+//						}
+						System.out.println(head.x + "   " + head.y);
 						repaint();
+						System.out.println("OK2");
 						//刷新完判断是否撞墙和撞自己的身体
+											
+						System.out.println("判断撞墙");
 						HitWall();
 						HitSelf();
 					}
@@ -874,12 +935,6 @@ public class SnakeDemo extends JComponent{
 			    		ifcount = false;
 			    		countsecond = 5;
 			    		Time2.setText("5");
-//			    		point_list[0] = 20;
-//			    	    point_list[1] = 40;
-//			    	    point_list[2] = 30;
-//			    	    point_list[3] = 10;
-//			    	    point_list[4] = 30;
-//			    	    point_list[5] = 50;
 			    		remove(food_label);
 			    		if(foodtag == 1 || foodtag == 5)//分值最高的两种食物在规定时间内没被吃掉就消失
 			    		{
@@ -952,8 +1007,6 @@ public class SnakeDemo extends JComponent{
 		    }
 		}	
 }
-
-
 
 class AePlayWave extends Thread { 	 
     private String filename;
