@@ -298,7 +298,7 @@ public class SnakeDemo extends JComponent{
 	    		
 	    		if(e.isShiftDown())
 	    		{
-	    			if(!startfire)
+	    			if(!startfire && bullet > 0)
 	    			{
 	    				System.out.println("Fire a bullet");
 		     			target = Search(head,current_direction);
