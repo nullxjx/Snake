@@ -3,7 +3,7 @@ This is a Snake game in Java.
 
 这是用Java语言实现的一个贪吃蛇游戏。
 
-## 1st_version
+## 1st version
 游戏总的代码行数差不多是700行。  
 
 游戏中贪吃蛇的头部是一个红色方块，贪吃蛇的身体结点是渐变色的方块。食物是绿色的圆形。  
@@ -57,6 +57,6 @@ This is a Snake game in Java.
 
 修复部分bug。  
 
-
+##
 有问题通过本人邮件联系我&nbsp; 
 My e-mail: thexjx@gmail.com
