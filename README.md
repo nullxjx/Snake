@@ -16,6 +16,11 @@ This is a Snake game in Java.
 
 吃到食物和死亡时都会有相应的音效。  
 
+截图如下：  
+![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)
+
 
 
 ## 2nd version
