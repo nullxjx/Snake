@@ -77,6 +77,11 @@ This is a Snake game in Java.
 
 注意此版本的游戏地图直接从map目录下读取，你可以按照目录下的txt文件格式设计自己的地图，目录里面已经包含了三个地图  
 
+截图如下：  
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-00-56.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png)
 
 ##
 有问题通过本人邮件联系我  
