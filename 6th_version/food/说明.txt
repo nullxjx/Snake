@@ -1,0 +1,6 @@
+point_list[0] = 50;
+point_list[1] = 40;
+point_list[2] = 30;
+point_list[3] = 20;
+point_list[4] = 10;
+point_list[5] = 0;//子弹不得分
