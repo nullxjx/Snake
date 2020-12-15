@@ -1,7 +1,7 @@
 # Snake
 This is a Snake game in Java.
 
-这是本人用Java语言写的一个贪吃蛇游戏。&nbsp; &nbsp; 
+这是用Java语言实现的一个贪吃蛇游戏。&nbsp; &nbsp; 
 
 ## 1st_version
 游戏总的代码行数差不多是700行。&nbsp; 
