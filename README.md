@@ -58,5 +58,6 @@ This is a Snake game in Java.
 修复部分bug。  
 
 ##
-有问题通过本人邮件联系我&nbsp; 
-My e-mail: thexjx@gmail.com
+有问题通过本人邮件联系我  
+
+thexjx@gmail.com
