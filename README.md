@@ -102,6 +102,8 @@ map.txt格式如下：
 
 注意，每行的每个字符后面都有一个\t字符，不能包含任何空行。  
 
+其中，0表示这个位置是路，3表示是障碍物，不能有其他数字。
+
 
 截图如下：  
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-00-56.png)
