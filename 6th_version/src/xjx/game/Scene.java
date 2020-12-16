@@ -28,9 +28,8 @@ public class Scene extends JFrame{
     private final JLabel label5 = new JLabel("剩余子弹：");
     private final JLabel label6 = new JLabel("AI长度：");
     private final JLabel label7 = new JLabel("食物坐标：");
-    private final JLabel label8 = new JLabel("下一步：");
+
     private final JLabel FoodCoor = new JLabel("");
-    private final JLabel NextStepCoor = new JLabel("");
     private final JLabel AILength = new JLabel("1");
     private final JLabel Length = new JLabel("1");
     private final JLabel Score = new JLabel("0");
@@ -43,9 +42,10 @@ public class Scene extends JFrame{
     private BGPanel backGroundPanel;
     private Timer timer;
 
-    public boolean pause = false;
+    public boolean pause = true;
     public boolean quit = false;
     public boolean die = false;
+    public boolean ai_die = false;
     private boolean show_grid = true;       //标记是否显示界面上的网格线，默认显示
     private boolean show_padding = true;    //标记是否显示界面上的边框线，默认显示
 
@@ -57,13 +57,14 @@ public class Scene extends JFrame{
     public final int padding = 5;               //内边框宽度
 
     private int[][] gameMap;                    //map数组标记当前地图的使用情况
-    /*0表示空闲
-     *1表示蛇身体节点
+    /*0表示空闲（道路）
+     *1表示玩家蛇身体节点
      *2表示食物
      *3表示障碍物
+     *4表示AI蛇身体结点
      */
 
-    private int gameMode = 0;                   //游戏模式
+    public int gameMode = 0;                   //游戏模式
     /*0表示只有player snake
     * 1表示只有ai snake
     * 2表示player snake 和 ai snake都存在
@@ -79,7 +80,6 @@ public class Scene extends JFrame{
 
     public void resetLabel(){
         FoodCoor.setText("");
-        NextStepCoor.setText("");
         AILength.setText("1");
         Length.setText("1");
         Score.setText("0");
@@ -123,11 +123,13 @@ public class Scene extends JFrame{
             ai = new AISnake(this);
         }else if(gameMode == 2){
             snake.removeAll();
+            snake.quit();
             snake = null;
             snake = new PlayerSnake(this);
 
             ai.removeAll();
             ai.removeAllPath();
+            ai.quit();
             ai = null;
             ai = new AISnake(this);
         }
@@ -135,6 +137,7 @@ public class Scene extends JFrame{
         timer.reset();
 
         die = false;
+        ai_die = false;
         quit = false;
         pause = false;
 
@@ -174,9 +177,11 @@ public class Scene extends JFrame{
             ai = null;
         }else if(current_mode == 2){
             snake.removeAll();
+            snake.quit();
             snake = null;
             ai.removeAll();
             ai.removeAllPath();
+            ai.quit();
             ai = null;
         }
 
@@ -195,6 +200,7 @@ public class Scene extends JFrame{
         timer.reset();
 
         die = false;
+        ai_die = false;
         quit = false;
         pause = false;
 
@@ -454,7 +460,6 @@ public class Scene extends JFrame{
                         if(j == gameMode){
                             return;
                         }else{
-                            if(j == 2) return;
                             changeGameMode(gameMode, j);
                         }
                     }
@@ -462,7 +467,7 @@ public class Scene extends JFrame{
             });
         }
         modeItems[gameMode].setSelected(true);
-        modeItems[2].setEnabled(false);
+//        modeItems[2].setEnabled(false);
 
         //设置速度菜单
         String[] speed = {"龟速","行走","奔跑","疯狂"};
@@ -480,20 +485,20 @@ public class Scene extends JFrame{
                             snake.setDefaultSpeed(600);
                             snake.resetSpeed();
                         } else if(i1 == 1) {
-                            snake.setDefaultSpeed(400);
+                            snake.setDefaultSpeed(500);
                             snake.resetSpeed();
                         } else if(i1 == 2) {
-                            snake.setDefaultSpeed(300);
+                            snake.setDefaultSpeed(200);
                             snake.resetSpeed();
                         } else if(i1 == 3) {
-                            snake.setDefaultSpeed(150);
+                            snake.setDefaultSpeed(100);
                             snake.resetSpeed();
                         }
                     }
                 }
             });
         }
-        speedItems[2].setSelected(true);
+        speedItems[1].setSelected(true);
 
         //设置头部图片
         String[] head = {"doge","二哈","经典","憧憬"};
@@ -550,8 +555,8 @@ public class Scene extends JFrame{
 
     public void initRightBar(){
         remove(label);remove(label2);remove(label3);remove(label4);
-        remove(label5);remove(label6);remove(label7);remove(label8);
-        remove(FoodCoor);remove(NextStepCoor);remove(AILength);remove(Length);
+        remove(label5);remove(label6);remove(label7);
+        remove(FoodCoor);remove(AILength);remove(Length);
         remove(Score);remove(Time);remove(Amount);remove(Weapon);remove(p);
 
         //布局
@@ -590,12 +595,9 @@ public class Scene extends JFrame{
             add(AILength);AILength.setBounds(info_x, 340, 80, 20);AILength.setFont(f);
             add(label7);label7.setBounds(info_x, 365, 80, 20);label7.setFont(f);
             add(FoodCoor);FoodCoor.setBounds(info_x, 390, 80, 20);FoodCoor.setFont(f);
-            add(label8);label8.setBounds(info_x, 415, 80, 20);label8.setFont(f);
-            add(NextStepCoor);NextStepCoor.setBounds(info_x, 440, 80, 20);NextStepCoor.setFont(f);
         }
         //初始化这些Label组成的Hashmap
         infos.put("FoodCoor", FoodCoor);            //食物坐标
-        infos.put("NextStepCoor", NextStepCoor);    //下一步
         infos.put("AILength", AILength);            //AI长度
         infos.put("Length", Length);                //当前长度
         infos.put("Score", Score);                  //当前得分
@@ -611,9 +613,7 @@ public class Scene extends JFrame{
         label5.setForeground(Color.white);
         label6.setForeground(Color.white);
         label7.setForeground(Color.white);
-        label8.setForeground(Color.white);
         FoodCoor.setForeground(Color.white);
-        NextStepCoor.setForeground(Color.white);
         AILength.setForeground(Color.white);
         Length.setForeground(Color.white);
         Score.setForeground(Color.white);
@@ -680,14 +680,21 @@ public class Scene extends JFrame{
                 }
 
                 //显示死亡信息
-                if(die) {
-                    g.setFont(new Font("微软雅黑",Font.BOLD | Font.ITALIC,50));
+                if(die || ai_die) {
+                    g.setFont(new Font("微软雅黑",Font.BOLD | Font.ITALIC,30));
                     g.setColor(Color.white);
                     g.setStroke( new BasicStroke(10,BasicStroke.CAP_BUTT,BasicStroke.JOIN_BEVEL));
 
                     int x = this.getWidth()/2, y = this.getHeight()/2;
-                    g.drawString("Sorry, you die", x-150, y-50);
-                    g.drawString("Press ESC to restart", x-150, y+50);
+                    //文字的位置没有根据界面大小进行适配，有可能显示出来看不到
+                    if(die){
+                        g.drawString("Sorry, you die", x-130, y-30);
+                        g.drawString("Press Esc to restart", x-180, y+30);
+                    }
+                    if(ai_die){
+                        g.drawString("oops, the stupid AI can not find a way out", x-250, y-30);
+                        g.drawString("Press Esc to restart", x-180, y+30);
+                    }
                 }
             }
         };
@@ -715,6 +722,14 @@ public class Scene extends JFrame{
         return food.getFoodPoint(coor);
     }
 
+    public Coordinate getAITarget(){
+        return ai.getTarget();
+    }
+
+    public void FindNewPath(){
+        ai.FindNewPath();
+    }
+
     public int coor_trans(Coordinate coor){
         //把gamemap里面的二维坐标(x,y)转化成一维坐标
         int x = coor.x, y = coor.y;
@@ -734,14 +749,15 @@ public class Scene extends JFrame{
         setFocusable(true);
         setVisible(true);
         timer = new Timer();
+        pause = false;
     }
 
     //主函数入口
     public static void main(String[] args) {
         System.out.println("Application starting...\t" + getSysTime());
         Scene game = new Scene();
-        game.gameMode = 0;
-        game.loadGameMap("map//map.txt");//加载游戏地图
+        game.gameMode = 2;
+        game.loadGameMap("map//trap.txt");//加载游戏地图
         PrintMap(game.getMap(),"debug//map.txt");
         game.initUI();//初始化游戏界面
         game.run();//开始游戏

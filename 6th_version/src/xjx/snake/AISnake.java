@@ -87,7 +87,7 @@ public class AISnake {
         GameUI.add(head.label);
         head.label.setBounds(GameUI.getPixel(head.coor.x, GameUI.padding, GameUI.pixel_per_unit),
                 GameUI.getPixel(head.coor.y, GameUI.padding, GameUI.pixel_per_unit), 20, 20);
-        GameUI.setMap(0, cols-1, 1);
+        GameUI.setMap(0, cols-1, 4);
 
         long stime = System.currentTimeMillis();
         FindPath(new pos(0, cols-1));
@@ -123,7 +123,9 @@ public class AISnake {
         for (int i = 0; i < 4; i++) {
             pos tmp = now.add(dir[i]);
             if (tmp.x >= 0 && tmp.x < rows && tmp.y >= 0 && tmp.y < cols &&
-                    map[tmp.x][tmp.y] != 1 && map[tmp.x][tmp.y] != 3 ) {
+                    map[tmp.x][tmp.y] != 4 && map[tmp.x][tmp.y] != 3 ) {
+                //1表示是玩家蛇，4表示是AI蛇，3表示是障碍物
+                //目前允许AI蛇穿过玩家蛇，但是玩家蛇不能穿过AI蛇
                 res.add(tmp);
             }
         }
@@ -170,7 +172,7 @@ public class AISnake {
             }
         }
 
-        return new path(came_from, cost_so_far.get(coor_trans(goal)));
+        return new path(came_from, cost_so_far.getOrDefault(coor_trans(goal), -1.));
     }
 
     int checkDirection(pos now, pos other){
@@ -239,24 +241,50 @@ public class AISnake {
 
     public void FindPath(pos start){
         Vector<Coordinate> food_coors = GameUI.getFoodCoor();
-        Vector<path> path_set = new Vector<>();
         double min_cost = 99999999.;//需要保证足够大
         path min_path = null;
         pos end = null;
         for (Coordinate next : food_coors) {
             pos goal = new pos(next.x, next.y);
             path p = AStar(GameUI.getMap(), start, goal);
-            if(p.cost < min_cost) {
-                min_cost = p.cost;
-                min_path = p;
-                end = goal;
-                target = new pos(goal.x, goal.y);
+            if(p.cost > 0){
+                if(p.cost < min_cost) {
+                    min_cost = p.cost;
+                    min_path = p;
+                    end = goal;
+                    target = new pos(goal.x, goal.y);
+                }
+            }else{
+                //证明没有找到路径
+                System.out.println("unable to find path");
+                show();
+                GameUI.repaint();
+                goDie();
             }
         }
 
         //在界面上显示食物坐标
         GameUI.updateInfos("FoodCoor", "(" + target.x + "," + target.y + ")");
         CalPath(min_path, end, start);
+    }
+
+    public void FindNewPath(){
+        removeAllPath();
+        path_labels.clear();
+        path_pos.clear();
+        Coordinate head = body.getFirst().coor;
+        FindPath(new pos(head.y, head.x));
+    }
+
+    public Coordinate getTarget() {
+        return new Coordinate(target.x, target.y);
+    }
+
+    public void goDie(){
+        quit();
+        GameUI.pause = true;
+        GameUI.quit = true;
+        GameUI.ai_die = true;
     }
 
     public void move(){
@@ -275,8 +303,7 @@ public class AISnake {
 
             Body next_node = new Body(next_coor, headIcon);
             body.addFirst(next_node);//添头
-            //GameUI.map[next_node.coor.y][next_node.coor.x] = 1;//标记为蛇身体节点
-            GameUI.setMap(next_node.coor.y, next_node.coor.x, 1);
+            GameUI.setMap(next_node.coor.y, next_node.coor.x, 4);
             GameUI.PrintMap(GameUI.getMap(), "debug//map.txt");
             next_node.label.setVisible(true);
             GameUI.add(next_node.label);
@@ -294,6 +321,7 @@ public class AISnake {
                 new Music("music//eat.wav").start();
                 GameUI.updateInfos("AILength", "" + body.size());
                 GameUI.removeFood(new Coordinate(next_node.coor.y, next_node.coor.x));
+                GameUI.updateInfos("Amount", "" + GameUI.getFoodCoor().size());
                 System.out.println("AI eat food!");
 
                 path_labels.clear();

@@ -14,8 +14,8 @@ import xjx.game.*;
 public class PlayerSnake {
     private Scene GameUI;//母窗体,即游戏主界面
     private Direction direction = Direction.RIGHT;//蛇当前前进的方向,初始化默认向右移动
-    private int speed = 300;//用于描述蛇移动速度的变量，其实是作为蛇刷新线程的时间用的
-    private int defaultSpeed = 300;//默认速度
+    private int speed = 500;//用于描述蛇移动速度的变量，其实是作为蛇刷新线程的时间用的
+    private int defaultSpeed = 500;//默认速度
     private Deque<Body> body = new LinkedList<>();//用于描述蛇身体节点的数组，保存蛇身体各个节点的坐标
     private int point = 0;//当前蛇得了多少分
     private int bulletNumber = 5;//蛇的子弹数目
@@ -87,6 +87,16 @@ public class PlayerSnake {
                     GameUI.remove(tail.label);
                     //添头去尾实现移动
                 }
+            }else{
+                GameUI.removeFood(new Coordinate(next_node.coor.y, next_node.coor.x));
+
+                if(GameUI.gameMode == 2){//AI和玩家同时存在
+                    Coordinate AI_target = GameUI.getAITarget();
+                    if(AI_target.x == next_coor.y && AI_target.y == next_coor.x){
+                        //把AI的食物吃掉了
+                        GameUI.FindNewPath();
+                    }
+                }
             }
         }
     }
@@ -94,7 +104,16 @@ public class PlayerSnake {
     //判断一个坐标位置是否是蛇死亡的位置
     public boolean checkDeath(Coordinate coor){
         int rows = GameUI.getMap().length, cols = GameUI.getMap()[0].length;
-        return coor.x < 0 || coor.x >= cols || coor.y < 0 || coor.y >= rows || GameUI.getMap()[coor.y][coor.x] == 3;
+        int[][] map = GameUI.getMap();
+        int x = coor.y, y = coor.x;
+        /*
+        * 死亡条件：
+        * 1. 跑出游戏界面
+        * 2. 碰到障碍物
+        * 3. 碰到自己
+        * 4. 碰到AI
+        * */
+        return x < 0 || x >= rows || y < 0 || y >= cols || map[x][y] == 1 || map[x][y] == 3 || map[x][y] == 4;
     }
 
     public boolean checkEat(Coordinate coor){
@@ -129,6 +148,8 @@ public class PlayerSnake {
 
     public void resetSpeed(){
         this.speed = defaultSpeed;
+        executor.shutdownNow();
+        run();
     }
 
     public void setDefaultSpeed(int speed){
@@ -137,10 +158,14 @@ public class PlayerSnake {
 
     public void setHeadIcon(int tag){
         headIconTag = tag;
+        show();
+        GameUI.repaint();
     }
 
     public void setBodyIcon(int tag){
         bodyIconTag = tag;
+        show();
+        GameUI.repaint();
     }
 
     public void removeAll(){

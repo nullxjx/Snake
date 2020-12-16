@@ -23,6 +23,7 @@ public class Foodset {
         }
 
         produceFood();
+//        produceFood_test();
         show();
     }
 
@@ -44,17 +45,43 @@ public class Foodset {
         return -1;
     }
 
+    public void produceFood_test(){
+        int amount = 2, foodtag = 0;
+        Food newfood;
+
+        for(int i = 0; i < amount; i++) {
+            Coordinate coor;
+            if (i == 0) coor = new Coordinate(8, 4);
+            else coor = new Coordinate(8, 0);
+            food_coors.add(coor);
+            Coordinate _coor = new Coordinate(coor.y,coor.x);//置换行和列
+            GameUI.setMap(coor.x, coor.y, 2);
+            newfood = new Food(foodtag, _coor, foodIcon[foodtag]);
+            food.add(newfood);
+            GameUI.add(newfood.label);
+            food_labels.add(newfood.label);
+        }
+
+        GameUI.updateInfos("Amount", food.size() + "");//刷新GameUI界面上显示食物数量的Label
+        show();
+        System.out.println("产生" + amount + "个食物\t" + GameUI.getSysTime());
+        for (Coordinate node : food_coors) {
+            System.out.print("(" + node.x + "," + node.y + ") ");
+        }
+        System.out.println();
+        GameUI.PrintMap(GameUI.getMap(), "debug//map.txt");
+    }
+
     public void produceFood(){
         Random rand = new Random();
         int amount = rand.nextInt(3) + 2;
-//        int amount = 3;
+//        int amount = 1;
         double prob;
         int foodtag = 2;
         Food newfood;
 
         for(int i = 0; i < amount; i++) {
             Coordinate coor = GameUI.randomCoor();//注意，coor.x是数组的行，coor.y是数组的列，和界面上的行序号和列序号正好相反
-
             food_coors.add(coor);
 
             Coordinate _coor = new Coordinate(coor.y,coor.x);//置换行和列
