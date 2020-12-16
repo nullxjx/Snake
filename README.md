@@ -68,7 +68,7 @@
 ## 6th version
 - 对代码进行了一次彻底重构。
 
-- 修复更换图片刷新不及时的问题
+- 修复更换图片后，游戏界面刷新不及时的问题
 
 - 修复打开“设置背景图片”面板时间比较长的问题  
 
@@ -107,6 +107,20 @@ map.txt格式如下：
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png)
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png)
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png)
+
+
+注意：  
+- 由于AI蛇目前使用的是静态寻路算法，所以为了避免玩家蛇故意挡在AI蛇前面造成AI蛇死亡，游戏中允许AI蛇碰到玩家蛇，但是不允许玩家蛇头部碰到AI蛇。  
+- 如果玩家蛇吃掉了AI蛇的目标食物，AI蛇会自动寻找下一个距离它最近的食物，然后去吃掉。
+- 目前AI蛇只有在2种情况下会死
+    - 进入一个凹形区域去吃里面的食物，然后发现出不来了。（玩家蛇可以使用子弹击毁障碍物出来，AI不可以发射子弹）
+    - 自己身体把自己的头包围起来了，然后也找不到出去的路了。
+    - AI蛇和玩家蛇死了游戏都会自动结束，按Esc键可以重新开始。
+ 
+下面这种情况就是AI蛇进入凹形区域后发现出不来  
+
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-16_20-29-08.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-16_20-31-19.png)
 
 ##
 有问题通过本人邮件联系我  
