@@ -4,26 +4,18 @@
 
 ## 1st version
 - 游戏总的代码行数差不多是700行。  
-
 - 游戏中贪吃蛇的头部是一个红色方块，贪吃蛇的身体结点是渐变色的方块。食物是绿色的圆形。  
-
 - 您可以通过键盘上的方向键或者WASD键来控制蛇的移动。  
-
 - 在游戏界面按ESC键可以直接重新开始游戏，按空格键可以实现暂停和开始。  
-
 - 菜单栏的设置菜单可以设置网格以及边框是否可见。游戏界面右边会显示你的当前长度和当前所花时间。  
-
 - 吃到食物和死亡时都会有相应的音效。  
-
 - 右边会显示你的当前长度和所花时间。  
-
+- 游戏界面的宽度（横向的格子数）和高度（纵向的格子数）分别可以通过 Scene 类中的 width 和 height变量来设置，默认两者都是20。  
 
 截图如下：  
 ![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png)
 ![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)
-
-第一版游戏界面的宽度（横向的格子数）和高度（纵向的格子数）分别可以通过 Scene 类中的 width 和 height变量来设置，默认两者都是20。  
+![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)  
 
 
 ## 2nd version
@@ -107,6 +99,7 @@ map.txt格式如下：
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png)
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png)
 ![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png)
+![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-16_20-56-08.png)
 
 
 注意：  
