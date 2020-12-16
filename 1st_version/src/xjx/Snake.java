@@ -26,15 +26,15 @@ public class Snake {
         int rows = GameUI.height, cols = GameUI.width;
         Random rand = new Random();
         Coordinate res;
-        int x = rand.nextInt(rows-1);
-        int y = rand.nextInt(cols-1);
+        int x = rand.nextInt(cols-1);
+        int y = rand.nextInt(rows-1);
 
         while(true) {
             boolean tag = false;
             for(Coordinate coor : body){
                 if(x == coor.y && y == coor.x){
-                    x = rand.nextInt(rows-1);
-                    y = rand.nextInt(cols-1);
+                    x = rand.nextInt(cols-1);
+                    y = rand.nextInt(rows-1);
                     tag = true;
                     break;
                 }
