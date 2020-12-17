@@ -13,9 +13,7 @@
 - 游戏界面的宽度（横向的格子数）和高度（纵向的格子数）分别可以通过 Scene 类中的 width 和 height变量来设置，默认两者都是20。  
 
 截图如下：  
-![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)  
+|![](./1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png)|![](./1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png)|![](./1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)|
 
 
 ## 2nd version
@@ -78,11 +76,11 @@ map.txt格式如下：
 
 
 截图如下：  
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-00-56.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-16_20-56-08.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-15_21-00-56.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-16_20-56-08.png)
 
 
 注意：  
@@ -95,8 +93,8 @@ map.txt格式如下：
  
 比如下面这种情况就是AI蛇进入凹形区域后发现出不来了，然后就只有选择goDie了🤣  
 
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-16_20-29-08.png)
-![example-image](https://github.com/njuxjx/Snake/blob/master/6th_version/screenshots/Snipaste_2020-12-16_20-31-19.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-16_20-29-08.png)
+![example-image](./6th_version/screenshots/Snipaste_2020-12-16_20-31-19.png)
 
 ##
 有问题通过本人邮件联系我  
