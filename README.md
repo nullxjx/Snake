@@ -13,6 +13,8 @@
 - 游戏界面的宽度（横向的格子数）和高度（纵向的格子数）分别可以通过 Scene 类中的 width 和 height变量来设置，默认两者都是20。  
 
 截图如下：  
+| demo1 | demo2 | demo3 |
+| :------------: | :------------: | :-----------: |
 |![](./1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png)|![](./1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png)|![](./1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)|
 
 
