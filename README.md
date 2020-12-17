@@ -96,11 +96,11 @@ thexjx@gmail.com
 [1st_demo2]: ./1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png
 [1st_demo3]: ./1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png
 
-[6th_demo1]: ./1st_version/screenshots/Snipaste_2020-12-15_21-00-56.png
-[6th_demo2]: ./1st_version/screenshots/Snipaste_2020-12-15_21-01-48.png
-[6th_demo3]: ./1st_version/screenshots/Snipaste_2020-12-15_21-02-14.png
-[6th_demo4]: ./1st_version/screenshots/Snipaste_2020-12-15_21-03-00.png
-[6th_demo5]: ./1st_version/screenshots/Snipaste_2020-12-16_20-56-08.png
+[6th_demo1]: ./6th_version/screenshots/Snipaste_2020-12-15_21-00-56.png
+[6th_demo2]: ./6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png
+[6th_demo3]: ./6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png
+[6th_demo4]: ./6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png
+[6th_demo5]: ./6th_version/screenshots/Snipaste_2020-12-16_20-56-08.png
 
-[6th_demo6]: ./1st_version/screenshots/Snipaste_2020-12-16_20-29-08.png
-[6th_demo7]: ./1st_version/screenshots/Snipaste_2020-12-16_20-31-19.png
+[6th_demo6]: ./6th_version/screenshots/Snipaste_2020-12-16_20-29-08.png
+[6th_demo7]: ./6th_version/screenshots/Snipaste_2020-12-16_20-31-19.png
