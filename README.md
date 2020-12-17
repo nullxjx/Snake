@@ -15,7 +15,7 @@
 截图如下：  
 | demo1 | demo2 | demo3 |
 | :------------: | :------------: | :-----------: |
-|![](./1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png)|![](./1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png)|![](./1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png)|
+|![][1st_demo1]|![][1st_demo2]|![][1st_demo3]|
 
 
 ## 2nd version
@@ -63,14 +63,13 @@
 - 游戏地图从map目录下读取，你可以按照目录下的txt文件格式设计自己的地图，目录里面已经包含了三个地图  
     - 注意，每行的每个字符后面都有一个\t字符，不能包含任何空行。  
     - 其中，0表示这个位置是路，3表示是障碍物，不能有其他数字。
-    - ***[example map >][example_map]***	  
+    - 示例地图请参考 ***[example map >][example_map]***	  
 
 截图如下：  
-![](./6th_version/screenshots/Snipaste_2020-12-15_21-00-56.png)
-![](./6th_version/screenshots/Snipaste_2020-12-15_21-01-48.png)
-![](./6th_version/screenshots/Snipaste_2020-12-15_21-02-14.png)
-![](./6th_version/screenshots/Snipaste_2020-12-15_21-03-00.png)
-![](./6th_version/screenshots/Snipaste_2020-12-16_20-56-08.png)
+| demo1 | demo2 | demo3 |
+| :------------: | :------------: | :-----------: |
+|![][6th_demo1]|![][6th_demo2]|![][6th_demo3]|
+|![][6th_demo4]|![][6th_demo5]||
 
 
 注意：  
@@ -82,9 +81,10 @@
     - AI蛇和玩家蛇死了游戏都会自动结束，按Esc键可以重新开始。
  
 比如下面这种情况就是AI蛇进入凹形区域后发现出不来了，然后就只有选择goDie了🤣  
+| demo1 | demo2 | demo3 |
+| :------------: | :------------: | :-----------: |
+|![][6th_demo6]|->|![][6th_demo7]|
 
-![](./6th_version/screenshots/Snipaste_2020-12-16_20-29-08.png)
-![](./6th_version/screenshots/Snipaste_2020-12-16_20-31-19.png)
 
 ##
 有问题通过本人邮件联系我  
@@ -92,3 +92,15 @@
 thexjx@gmail.com
 
 [example_map]: ./6th_version/map/map.txt
+[1st_demo1]: ./1st_version/screenshots/Snipaste_2020-12-15_14-52-24.png
+[1st_demo2]: ./1st_version/screenshots/Snipaste_2020-12-15_14-53-12.png
+[1st_demo3]: ./1st_version/screenshots/Snipaste_2020-12-15_14-54-01.png
+
+[6th_demo1]: ./1st_version/screenshots/Snipaste_2020-12-15_21-00-56.png
+[6th_demo2]: ./1st_version/screenshots/Snipaste_2020-12-15_21-01-48.png
+[6th_demo3]: ./1st_version/screenshots/Snipaste_2020-12-15_21-02-14.png
+[6th_demo4]: ./1st_version/screenshots/Snipaste_2020-12-15_21-03-00.png
+[6th_demo5]: ./1st_version/screenshots/Snipaste_2020-12-16_20-56-08.png
+
+[6th_demo6]: ./1st_version/screenshots/Snipaste_2020-12-16_20-29-08.png
+[6th_demo7]: ./1st_version/screenshots/Snipaste_2020-12-16_20-31-19.png
