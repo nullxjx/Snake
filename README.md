@@ -86,6 +86,44 @@
 |![][6th_demo6]|![][6th_demo7]|
 
 
+## 7th version
+- 程序结构调整
+- AI寻路策略优化
+
+调整之后的AI寻路策略为
+```
+void move(){
+    1.获取AI头部坐标head
+
+    2.获取界面上所有食物坐标food_pos_sets
+
+    3.判断从head出发，是否存在一条能够安全达到某个食物的路径（安全暂时定义为虚拟蛇吃完这个食物后还能找到自己的尾巴）
+        3.1如果存在多条这样的路径，则选其中最短的一条，让AI沿着这条路移动一步
+        3.2如果不存在这样的路径，则寻找一条能够到达自己尾巴的最长路径
+            3.2.1如果存在这样的路径，则沿着这条路移动一步
+            3.2.2如果不存在这样的路径，则死亡
+}
+```
+
+如果你想设置自己的游戏地图，只需要按照上面的说明新建一个txt文件，例如demo.txt，然后修改下面的一个地方即可：
+```
+//主函数入口
+public static void main(String[] args) {
+    System.out.println("Application starting...\t" + Util.getSysTime());
+
+    Scene game = new Scene();
+    game.mapFile = "demo.txt";//唯一需要修改的地方，如果你想更换地图的话
+    game.gameMode = 1;
+    game.loadGameMap(game.mapFile);//加载游戏地图
+
+    Util.PrintMap(game.getMap(),"debug//map.txt");//此处不需要修改
+
+    game.initUI();//初始化游戏界面
+    game.run();//开始游戏
+    System.out.println("\nGame start...\t" + Util.getSysTime());
+}
+```
+
 ##
 有问题通过本人邮件联系我  
 
